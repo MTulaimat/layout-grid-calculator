@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Grids Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dubai-font@1.0.1/dubai-font/css/dubai-font.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+
+<body class="font-dubai-light">
+    <div class="container">
+        <input id="cols" type="number" placeholder="Columns">
+        <input id="gaps" type="number" placeholder="Gaps">
+        <button>Calculate</button>
+
+        <div class="result-container">
+            <p>PX: <span id="result-p"></p>
+            <p>EM: <span id="result-em"></p>
+        </div>
+    </div>
+
+    <script>
+        const COL_WIDTH = 4.25;
+        const GAP_WIDTH = 2.3181875;
+
+        var colsInput = $("input#cols");
+        var gapsInput = $("input#gaps");
+        var resultP = $("span#result-p");
+        var resultEM = $("span#result-em");
+
+        $("button").click(function () {
+
+            if (colsInput.val() == "" || gapsInput.val() == "") return;
+            var colsNum = parseFloat(colsInput.val());
+            var gapsNum = parseFloat(gapsInput.val());
+
+            var pixels = (COL_WIDTH * colsNum) + (GAP_WIDTH * gapsNum);
+
+            resultP.text(pixels + "px");
+            resultEM.text((pixels / 16) + "em");
+        });
+
+        resultP.click(function () {
+            navigator.clipboard.writeText(resultP.text());
+        });
+
+        resultEM.click(function () {
+            navigator.clipboard.writeText(resultEM.text());
+        });
+    </script>
+</body>
+</html>
