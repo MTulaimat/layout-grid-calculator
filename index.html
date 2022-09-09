@@ -42,7 +42,7 @@
             var ems = (COL_WIDTH * colsNum) + (GAP_WIDTH * gapsNum);
 
             resultEM.text(ems + "em");
-            resultPx.text((ems / 16) + "px");
+            resultPx.text((ems * 16) + "px");
         });
 
         resultPx.click(function () {
