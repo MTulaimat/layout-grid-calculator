@@ -19,19 +19,22 @@
         <button>Calculate</button>
 
         <div class="result-container">
-            <p>PX: <span id="result-p"></p>
+            <p>PX: <span id="result-px"></p>
             <p>EM: <span id="result-em"></p>
+            <p>%: <span id="result-p"></p>
         </div>
     </div>
 
     <script>
         const COL_WIDTH = 4.25;
         const GAP_WIDTH = 2.3181875;
+        const FULL_WIDTH = 1224;
 
         var colsInput = $("input#cols");
         var gapsInput = $("input#gaps");
-        var resultPx = $("span#result-p");
+        var resultPx = $("span#result-px");
         var resultEM = $("span#result-em");
+        var resultP = $("span#result-p");
 
         $("button").click(function () {
 
@@ -40,9 +43,12 @@
             var gapsNum = parseFloat(gapsInput.val());
 
             var ems = (COL_WIDTH * colsNum) + (GAP_WIDTH * gapsNum);
+            var pxs = ems * 16;
+            var p = pxs / FULL_WIDTH * 100;
 
             resultEM.text(ems + "em");
-            resultPx.text((ems * 16) + "px");
+            resultPx.text(pxs + "px");
+            resultP.text(p + "%");
         });
 
         resultPx.click(function () {
@@ -51,6 +57,10 @@
 
         resultEM.click(function () {
             navigator.clipboard.writeText(resultEM.text());
+        });
+
+        resultP.click(function () {
+            navigator.clipboard.writeText(resultP.text());
         });
     </script>
 </body>
