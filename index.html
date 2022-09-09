@@ -30,7 +30,7 @@
 
         var colsInput = $("input#cols");
         var gapsInput = $("input#gaps");
-        var resultP = $("span#result-p");
+        var resultPx = $("span#result-p");
         var resultEM = $("span#result-em");
 
         $("button").click(function () {
@@ -39,14 +39,14 @@
             var colsNum = parseFloat(colsInput.val());
             var gapsNum = parseFloat(gapsInput.val());
 
-            var pixels = (COL_WIDTH * colsNum) + (GAP_WIDTH * gapsNum);
+            var ems = (COL_WIDTH * colsNum) + (GAP_WIDTH * gapsNum);
 
-            resultP.text(pixels + "px");
-            resultEM.text((pixels / 16) + "em");
+            resultEM.text(ems + "em");
+            resultPx.text((ems / 16) + "px");
         });
 
-        resultP.click(function () {
-            navigator.clipboard.writeText(resultP.text());
+        resultPx.click(function () {
+            navigator.clipboard.writeText(resultPx.text());
         });
 
         resultEM.click(function () {
